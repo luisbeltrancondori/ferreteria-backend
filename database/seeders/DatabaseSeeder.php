@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         Product::factory(10)->create();
 
         // $this->call(CategorySeeder::class);
+        $this->call(UserSeeder::class);
 
         User::factory()->create([
             'name' => 'Test User',
