@@ -9,11 +9,37 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth')->group(function () {
+
+
+});
+
+//Usuarios
+Route::controller(UserController::class)->group(function(){
+    Route::get('/users', 'index');
+    Route::post('/users', 'store');
+    Route::get('/users/{id}', 'show');
+    Route::put('/users/{id}', 'update');
+    Route::delete('/users/{id}', 'destroy');
+});
+
+//Roles
+Route::controller(RoleController::class)->group(function(){
+    Route::get('/roles', 'index');
+    Route::post('/roles', 'store');
+    Route::get('/roles/{id}', 'show');
+    Route::put('/roles/{id}', 'update');
+    Route::delete('/roles/{id}', 'destroy');
+});
+
+//Marcas
 Route::controller(BrandController::class)->group(function(){
     Route::get('/brands', 'index');
     Route::post('/brands', 'store');
@@ -22,6 +48,7 @@ Route::controller(BrandController::class)->group(function(){
     Route::delete('/brands/{id}', 'destroy');
 });
 
+//Categorias
 Route::controller(CategoryController::class)->group(function(){
     Route::get('/categories', 'index');
     Route::post('/categories', 'store');
@@ -30,6 +57,7 @@ Route::controller(CategoryController::class)->group(function(){
     Route::delete('/categories/{id}', 'destroy');
 });
 
+//Unidad de medida
 Route::controller(UnitmeasureController::class)->group(function(){
     Route::get('/unitmeasures', 'index');
     Route::post('/unitmeasures', 'store');
@@ -38,6 +66,7 @@ Route::controller(UnitmeasureController::class)->group(function(){
     Route::delete('/unitmeasures/{id}', 'destroy');
 });
 
+//Productos
 Route::controller(ProductController::class)->group(function(){
     Route::get('/products', 'index');
     Route::post('/products', 'store');
